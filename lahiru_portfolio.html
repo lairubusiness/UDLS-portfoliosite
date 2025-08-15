@@ -895,6 +895,26 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.85rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            .glass-card {
+                padding: 1rem;
+                border-radius: 14px;
+            }
+        }
+
         /* About section image styling */
         .about-image {
             max-width: 260px;
@@ -1047,6 +1067,61 @@
             .btn { padding: 0.85rem 1rem; font-size: 0.95rem; }
             .glass-card { padding: 1rem; border-radius: 14px; }
         }
+
+        #role-rotator {
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* Remove decorative floating icons site-wide */
+        .floating-elements { display: none !important; }
+
+        /* --- Mobile-first responsive enhancements (v2) --- */
+        @media (max-width: 1024px) {
+            .container { padding: 0 1.25rem; }
+            .glass-card { padding: 1.25rem; }
+        }
+
+        @media (max-width: 768px) {
+            /* Layout */
+            .hero-content { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero { padding-top: 6rem; }
+            .hero-text { text-align: center; }
+            .profile-container { margin: 0 auto; max-width: 220px; }
+            .cta-buttons { flex-direction: column; gap: 0.75rem; }
+            .btn { width: 100%; justify-content: center; padding: 0.9rem 1rem; }
+
+            /* Typography */
+            .hero-text h1 { font-size: 1.8rem; line-height: 1.2; }
+            .hero-text h2 { font-size: 1.1rem; }
+            .hero-text p { font-size: 0.95rem; }
+
+            /* Grids */
+            .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+            .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+            .education-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+
+            /* Sections */
+            section { padding: 3rem 0; }
+            .section-title { font-size: 1.6rem; }
+
+            /* Nav */
+            nav .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .mobile-menu { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.75rem 1rem; backdrop-filter: blur(8px); }
+            .mobile-menu a { padding: 0.75rem 0.5rem; border-radius: 10px; }
+
+            /* Cards/buttons soften on mobile */
+            .glass-card { box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 1.6rem; }
+            .hero-text h2 { font-size: 1rem; }
+            .btn { padding: 0.85rem 1rem; font-size: 0.95rem; }
+            .glass-card { padding: 1rem; border-radius: 14px; }
+            .container { padding: 0 1rem; }
+        }
     </style>
 </head>
 <body>
@@ -1098,12 +1173,7 @@
                     <div class="profile-photo">
                         <img src="profile/profile.jpg" alt="Portrait of U.D Lahiru Sandaruwan" loading="eager" />
                     </div>
-                    <div class="floating-elements">
-                        <div class="floating-icon"><span class="icon icon-code"></span></div>
-                        <div class="floating-icon"><span class="icon icon-react"></span></div>
-                        <div class="floating-icon"><span class="icon icon-nodejs"></span></div>
-                        <div class="floating-icon"><span class="icon icon-flutter"></span></div>
-                    </div>
+                    <!-- floating elements removed for cleaner, faster mobile UI -->
                 </div>
                 <div class="hero-text">
                     <h1>U.D Lahiru Sandaruwan</h1>
