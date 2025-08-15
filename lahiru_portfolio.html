@@ -90,30 +90,30 @@
             padding: 0 20px;
         }
 
-        /* Theme Toggle */
+        /* Theme Toggle (always visible above nav/backdrop) */
         .theme-toggle {
             position: fixed;
-            top: 12px;
-            right: 16px;
-            z-index: 1400;
+            top: 10px !important;
+            right: 58px !important; /* spaced from hamburger on mobile */
+            z-index: 1400; /* above nav (1100) and menu/backdrop (1300/1200) */
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 50px;
-            padding: 10px;
+            padding: 0.6rem 0.8rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            color: var(--text-primary);
         }
 
         .theme-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
         }
 
-        .theme-toggle i {
-            font-size: 1.2rem;
-            color: var(--accent-blue);
+        /* On larger screens, place toggle at the far right */
+        @media (min-width: 1025px) {
+            .theme-toggle { right: 20px !important; }
         }
 
         /* Navigation */
