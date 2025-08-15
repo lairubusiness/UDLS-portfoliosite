@@ -93,9 +93,9 @@
         /* Theme Toggle */
         .theme-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1001;
+            top: 12px;
+            right: 16px;
+            z-index: 1400;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -133,6 +133,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -144,6 +145,7 @@
             background-clip: text;
             text-decoration: none;
             letter-spacing: -1px;
+            margin-right: auto;
         }
 
         .nav-links {
@@ -787,6 +789,47 @@
         /* dim background when menu open */
         .menu-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1200; }
         .menu-backdrop.active { display: block; }
+
+        @media (max-width: 1024px) {
+            .container { padding: 0 1.25rem; }
+            .glass-card { padding: 1.25rem; }
+
+            /* Force desktop links hidden and hamburger visible on mobile */
+            nav .nav-links { display: none !important; }
+            .hamburger { display: flex !important; }
+
+            /* Keep theme toggle visible and spaced from hamburger */
+            .theme-toggle { top: 10px !important; right: 58px !important; }
+        }
+
+        @media (max-width: 768px) {
+            /* Layout */
+            .hero-content { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+            .hero { padding-top: 6rem; }
+            .hero-text { text-align: center; }
+            .profile-container { margin: 0 auto; max-width: 220px; }
+            .cta-buttons { flex-direction: column; gap: 0.75rem; }
+            .btn { width: 100%; justify-content: center; padding: 0.9rem 1rem; }
+
+            /* Typography */
+            .hero-text h1 { font-size: 1.8rem; line-height: 1.2; }
+            .hero-text h2 { font-size: 1.1rem; }
+            .hero-text p { font-size: 0.95rem; }
+
+            /* Grids */
+            .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+            .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+            .education-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+
+            /* Sections */
+            section { padding: 3rem 0; }
+            .section-title { font-size: 1.6rem; }
+
+            /* Nav */
+            nav .nav-links { display: none !important; }
+            .hamburger { display: flex !important; }
+            /* mobile menu uses .active class */
+        }
     </style>
 </head>
 <body>
