@@ -22,10 +22,12 @@
         [data-theme="light"] {
             --primary-dark: #ffffff;
             --secondary-dark: #f8fafc;
-            --glass-bg: rgba(248, 250, 252, 0.8);
-            --glass-border: rgba(0, 0, 0, 0.1);
-            --text-primary: #0f172a;
+            --glass-bg: rgba(255, 255, 255, 0.9);
+            --glass-border: rgba(0, 0, 0, 0.08);
+            --text-primary: #1e293b;
             --text-secondary: #475569;
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            --gradient-secondary: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         }
 
         * {
@@ -90,34 +92,43 @@
             padding: 0 20px;
         }
 
-        /* Theme Toggle (always visible above nav/backdrop) */
+        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
-            top: 10px !important;
-            right: 58px !important; /* spaced from hamburger on mobile */
-            z-index: 1400; /* above nav (1100) and menu/backdrop (1300/1200) */
+            top: 1.5rem;
+            right: 2rem;
+            z-index: 1001;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            padding: 0.6rem 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: var(--text-primary);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .theme-toggle:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
         }
 
-        /* On larger screens, place toggle at the far right */
-        @media (min-width: 1025px) {
-            .theme-toggle { right: 20px !important; }
+        .theme-toggle i {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            transition: transform 0.3s ease;
         }
 
-        /* Navigation */
-        nav {
+        [data-theme="light"] .theme-toggle {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+/* Navigation */
+nav {
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
@@ -125,7 +136,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1100;
+            z-index: 1000;
             transition: all 0.3s ease;
         }
 
@@ -133,7 +144,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
         }
 
         .logo {
@@ -145,7 +155,6 @@
             background-clip: text;
             text-decoration: none;
             letter-spacing: -1px;
-            margin-right: auto;
         }
 
         .nav-links {
@@ -830,17 +839,85 @@
             .hamburger { display: flex !important; }
             /* mobile menu uses .active class */
         }
+
+        /* Add padding to first section to account for fixed nav */
+        #home {
+            padding-top: 5rem; /* Match nav height */
+        }
+
+        @media (max-width: 768px) {
+            nav .container {
+                padding: 0 1.5rem;
+            }
+            
+            .theme-toggle {
+                top: 1.2rem;
+                right: 1.2rem;
+            }
+        }
+        
+        /* Custom Icons using CSS and Unicode */
+        .icon {
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+        }
+
+        .icon-home::before { content: "🏠"; }
+        .icon-user::before { content: "👤"; }
+        .icon-code::before { content: "💻"; }
+        .icon-laptop::before { content: "⚡"; }
+        .icon-graduation::before { content: "🎓"; }
+        .icon-envelope::before { content: "📧"; }
+        .icon-moon::before { content: "🌙"; }
+        .icon-sun::before { content: "☀️"; }
+        .icon-eye::before { content: "👁️"; }
+        .icon-paper-plane::before { content: "🚀"; }
+        .icon-phone::before { content: "📞"; }
+        .icon-whatsapp::before { content: "💬"; }
+        .icon-linkedin::before { content: "🔗"; }
+        .icon-github::before { content: "⚙️"; }
+        .icon-location::before { content: "📍"; }
+        .icon-external::before { content: "🔗"; }
+        .icon-trophy::before { content: "🏆"; }
+        .icon-server::before { content: "🖥️"; }
+        .icon-database::before { content: "💾"; }
+        .icon-mobile::before { content: "📱"; }
+        .icon-paint::before { content: "🎨"; }
+        .icon-cogs::before { content: "⚙️"; }
+        .icon-html::before { content: "🌐"; }
+        .icon-react::before { content: "⚛️"; }
+        .icon-nodejs::before { content: "🟢"; }
+        .icon-flutter::before { content: "📱"; }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <i class="icon icon-moon" id="themeIcon"></i>
+    </button>
+
     <!-- Loading Screen -->
     <div class="loading">
         <div class="spinner"></div>
-    </div>
-
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" onclick="toggleTheme()">
-        <i class="icon icon-moon" id="theme-icon"></i>
     </div>
 
     <!-- Navigation -->
@@ -848,12 +925,12 @@
         <div class="container">
             <a href="#home" class="logo">UDLS</a>
             <ul class="nav-links">
-                <li><a href="#home"><span class="icon icon-home"></span> Home</a></li>
-                <li><a href="#about"><span class="icon icon-user"></span> About</a></li>
-                <li><a href="#skills"><span class="icon icon-code"></span> Skills</a></li>
-                <li><a href="#projects"><span class="icon icon-laptop"></span> Projects</a></li>
-                <li><a href="#education"><span class="icon icon-graduation"></span> Education</a></li>
-                <li><a href="#contact"><span class="icon icon-envelope"></span> Contact</a></li>
+                <li><a href="#home"><i class="icon icon-home"></i> <span>Home</span></a></li>
+                <li><a href="#about"><i class="icon icon-user"></i> <span>About</span></a></li>
+                <li><a href="#skills"><i class="icon icon-code"></i> <span>Skills</span></a></li>
+                <li><a href="#projects"><i class="icon icon-laptop"></i> <span>Projects</span></a></li>
+                <li><a href="#education"><i class="icon icon-graduation"></i> <span>Education</span></a></li>
+                <li><a href="#contact"><i class="icon icon-envelope"></i> <span>Contact</span></a></li>
             </ul>
             <div class="hamburger" onclick="toggleMobileMenu()">
                 <span></span>
@@ -868,12 +945,12 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
-        <a href="#home" onclick="toggleMobileMenu()"><span class="icon icon-home"></span> Home</a>
-        <a href="#about" onclick="toggleMobileMenu()"><span class="icon icon-user"></span> About</a>
-        <a href="#skills" onclick="toggleMobileMenu()"><span class="icon icon-code"></span> Skills</a>
-        <a href="#projects" onclick="toggleMobileMenu()"><span class="icon icon-laptop"></span> Projects</a>
-        <a href="#education" onclick="toggleMobileMenu()"><span class="icon icon-graduation"></span> Education</a>
-        <a href="#contact" onclick="toggleMobileMenu()"><span class="icon icon-envelope"></span> Contact</a>
+        <a href="#home" onclick="toggleMobileMenu()"><i class="icon icon-home"></i> <span>Home</span></a>
+        <a href="#about" onclick="toggleMobileMenu()"><i class="icon icon-user"></i> <span>About</span></a>
+        <a href="#skills" onclick="toggleMobileMenu()"><i class="icon icon-code"></i> <span>Skills</span></a>
+        <a href="#projects" onclick="toggleMobileMenu()"><i class="icon icon-laptop"></i> <span>Projects</span></a>
+        <a href="#education" onclick="toggleMobileMenu()"><i class="icon icon-graduation"></i> <span>Education</span></a>
+        <a href="#contact" onclick="toggleMobileMenu()"><i class="icon icon-envelope"></i> <span>Contact</span></a>
     </div>
 
     <!-- Hero Section -->
@@ -1202,30 +1279,44 @@
 
     <script>
         // Theme Toggle Functionality
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme or use system preference
+        const currentTheme = localStorage.getItem('theme') || (prefersDarkScheme.matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
-            if (body.getAttribute('data-theme') === 'light') {
-                body.setAttribute('data-theme', 'dark');
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Update theme icon based on current theme
+        function updateThemeIcon(theme) {
+            if (theme === 'light') {
                 themeIcon.className = 'icon icon-moon';
-                localStorage.setItem('theme', 'dark');
+                themeIcon.setAttribute('title', 'Switch to dark mode');
             } else {
-                body.setAttribute('data-theme', 'light');
                 themeIcon.className = 'icon icon-sun';
-                localStorage.setItem('theme', 'light');
+                themeIcon.setAttribute('title', 'Switch to light mode');
             }
         }
 
-        // Load saved theme
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            body.setAttribute('data-theme', savedTheme);
-            themeIcon.className = savedTheme === 'light' ? 'icon icon-sun' : 'icon icon-moon';
-        }
+        // Listen for system theme changes
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateThemeIcon(newTheme);
+            }
+        });
 
         // Mobile menu toggle with backdrop + a11y
         function toggleMobileMenu() {
@@ -1323,7 +1414,7 @@
 
         // Initialize everything when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            loadTheme();
+            updateThemeIcon(currentTheme);
             setTimeout(typeWriter, 2800);
             setTimeout(startRoleRotator, 2800);
         });
