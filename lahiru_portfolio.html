@@ -17,6 +17,9 @@
             --text-secondary: #cbd5e1;
             --gradient-primary: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 50%, #8b5cf6 100%);
             --gradient-secondary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            --mobile-padding: 1rem;
+            --section-padding-mobile: 3rem 1rem;
+            --font-size-base: 16px;
         }
 
         [data-theme="light"] {
@@ -45,6 +48,10 @@
             transition: all 0.3s ease;
             position: relative;
             overflow-x: hidden;
+            font-size: 1rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         body::before {
@@ -87,9 +94,10 @@
         }
 
         .container {
-            max-width: 1200px;
+            width: 100%;
+            padding: 0 var(--mobile-padding);
+            max-width: 100%;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
         /* Theme Toggle Button */
@@ -127,12 +135,14 @@
             background: rgba(255, 255, 255, 0.9);
             border-color: rgba(0, 0, 0, 0.1);
         }
-/* Navigation */
-nav {
+
+        /* Navigation */
+        nav {
+            height: 60px;
+            padding: 0 var(--mobile-padding);
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
-            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
@@ -158,7 +168,7 @@ nav {
         }
 
         .nav-links {
-            display: flex;
+            display: none; /* Hidden by default on mobile */
             list-style: none;
             gap: 2rem;
         }
@@ -191,12 +201,57 @@ nav {
             width: 100%;
         }
 
+        /* Hamburger Menu */
+        .hamburger {
+            display: flex; /* Show hamburger on mobile */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            padding: 1rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 999;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 0.8rem 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 0.3rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 1.2rem;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 140px 0 100px;
+            padding: 6rem 1rem 3rem;
             text-align: center;
-            color: var(--text-primary);
-            position: relative;
         }
 
         .hero-content {
@@ -274,64 +329,12 @@ nav {
             100% { transform: rotate(360deg); }
         }
 
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .floating-icon {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-blue);
-            font-size: 1.5rem;
-            animation: floatIcon 4s ease-in-out infinite;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .floating-icon:nth-child(1) {
-            top: 10%;
-            right: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-icon:nth-child(2) {
-            top: 60%;
-            right: 5%;
-            animation-delay: 1s;
-        }
-
-        .floating-icon:nth-child(3) {
-            top: 30%;
-            left: 5%;
-            animation-delay: 2s;
-        }
-
-        .floating-icon:nth-child(4) {
-            bottom: 10%;
-            left: 15%;
-            animation-delay: 3s;
-        }
-
-        @keyframes floatIcon {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
         .hero-text {
             max-width: 600px;
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
+            font-size: 2rem;
             font-weight: 800;
             margin-bottom: 1rem;
             background: var(--gradient-primary);
@@ -343,7 +346,7 @@ nav {
         }
 
         .hero-text h2 {
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             margin-bottom: 1.5rem;
             color: var(--text-secondary);
             font-weight: 400;
@@ -354,7 +357,7 @@ nav {
         }
 
         .hero-text p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             margin-bottom: 2.5rem;
             color: var(--text-secondary);
             line-height: 1.8;
@@ -448,13 +451,13 @@ nav {
 
         /* Sections */
         section {
-            padding: 100px 0;
+            padding: var(--section-padding-mobile);
             position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: 800;
             margin-bottom: 4rem;
             background: var(--gradient-primary);
@@ -480,7 +483,7 @@ nav {
         /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
             margin-top: 4rem;
         }
@@ -538,7 +541,7 @@ nav {
         /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2.5rem;
             margin-top: 4rem;
         }
@@ -765,97 +768,96 @@ nav {
             line-height: 1.6;
         }
 
-        /* Mobile Menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 64px; /* below navbar */
-            left: 0; right: 0;
-            margin: 0 12px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 16px;
-            padding: 10px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.35);
-            z-index: 1300;
-            transform: translateY(-8px);
-            opacity: 0;
-            transition: opacity .2s ease, transform .2s ease;
-        }
-
-        .mobile-menu.active { display: flex; flex-direction: column; gap: 8px; opacity: 1; transform: translateY(0); }
-
-        .mobile-menu a {
-            display: flex; align-items: center; gap: 10px;
-            padding: 12px 14px;
-            border-radius: 12px;
-            color: var(--text-primary) !important; text-decoration: none;
-            background: rgba(255,255,255,0.03);
-        }
-
-        .mobile-menu a:hover { background: rgba(255,255,255,0.08); color: var(--text-primary) !important; }
-
-        /* dim background when menu open */
-        .menu-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1200; }
-        .menu-backdrop.active { display: block; }
-
-        @media (max-width: 1024px) {
-            .container { padding: 0 1.25rem; }
-            .glass-card { padding: 1.25rem; }
-
-            /* Force desktop links hidden and hamburger visible on mobile */
-            nav .nav-links { display: none !important; }
-            .hamburger { display: flex !important; }
-
-            /* Keep theme toggle visible and spaced from hamburger */
-            .theme-toggle { top: 10px !important; right: 58px !important; }
-        }
-
-        @media (max-width: 768px) {
-            /* Layout */
-            .hero-content { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-            .hero { padding-top: 6rem; }
-            .hero-text { text-align: center; }
-            .profile-container { margin: 0 auto; max-width: 220px; }
-            .cta-buttons { flex-direction: column; gap: 0.75rem; }
-            .btn { width: 100%; justify-content: center; padding: 0.9rem 1rem; }
-
-            /* Typography */
-            .hero-text h1 { font-size: 1.8rem; line-height: 1.2; }
-            .hero-text h2 { font-size: 1.1rem; }
-            .hero-text p { font-size: 0.95rem; }
-
-            /* Grids */
-            .skills-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
-            .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-            .education-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
-
-            /* Sections */
-            section { padding: 3rem 0; }
-            .section-title { font-size: 1.6rem; }
-
-            /* Nav */
-            nav .nav-links { display: none !important; }
-            .hamburger { display: flex !important; }
-            /* mobile menu uses .active class */
-        }
-
-        /* Add padding to first section to account for fixed nav */
-        #home {
-            padding-top: 5rem; /* Match nav height */
-        }
-
-        @media (max-width: 768px) {
-            nav .container {
-                padding: 0 1.5rem;
-            }
-            
-            .theme-toggle {
-                top: 1.2rem;
-                right: 1.2rem;
+        /* Responsive Design */
+        @media (min-width: 375px) {
+            :root {
+                --font-size-base: 17px;
             }
         }
-        
+
+        @media (min-width: 768px) {
+            :root {
+                --mobile-padding: 2rem;
+                --section-padding-mobile: 4rem 2rem;
+            }
+
+            .nav-links {
+                display: flex;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: none;
+            }
+
+            .hero {
+                padding: 7rem 2rem 4rem;
+            }
+
+            .hero-content {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                gap: 4rem;
+            }
+
+            .cta-buttons {
+                flex-direction: row;
+                max-width: 100%;
+                justify-content: flex-start;
+            }
+
+            .btn {
+                width: auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px;
+                padding: 0 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Touch Target Sizes */
+        @media (pointer: coarse) {
+            a, button, .btn, .skill-tag {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* Performance Optimizations */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
         /* Custom Icons using CSS and Unicode */
         .icon {
             display: inline-block;
@@ -891,6 +893,8 @@ nav {
         .icon-react::before { content: "⚛️"; }
         .icon-nodejs::before { content: "🟢"; }
         .icon-flutter::before { content: "📱"; }
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -1087,7 +1091,7 @@ nav {
                             <span class="tech-tag">Supabase</span>
                             <span class="tech-tag">Tailwind CSS</span>
                         </div>
-                        <a href="https://github.com/lairubusiness/nextjs-ai-chatbot" class="btn btn-primary" target="_blank"><span class="icon icon-github"></span> View on GitHub</a>
+                        <a href="https://github.com/lairubusiness/nextjs-ai-chatbot" class="btn btn-primary"><span class="icon icon-github"></span> View on GitHub</a>
                     </div>
                 </div>
 
@@ -1102,7 +1106,7 @@ nav {
                             <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">Bootstrap</span>
                         </div>
-                        <a href="https://github.com/lairubusiness/Green_Grow_Manager" class="btn btn-primary" target="_blank"><span class="icon icon-github"></span> View on GitHub</a>
+                        <a href="https://github.com/lairubusiness/Green_Grow_Manager" class="btn btn-primary"><span class="icon icon-github"></span> View on GitHub</a>
                     </div>
                 </div>
 
@@ -1117,7 +1121,7 @@ nav {
                             <span class="tech-tag">Firebase</span>
                             <span class="tech-tag">Google Sign-In</span>
                         </div>
-                        <a href="https://github.com/lairubusiness/Game-Lounge-app.git" class="btn btn-primary" target="_blank"><span class="icon icon-github"></span> View on GitHub</a>
+                        <a href="https://github.com/lairubusiness/Game-Lounge-app.git" class="btn btn-primary"><span class="icon icon-github"></span> View on GitHub</a>
                     </div>
                 </div>
 
@@ -1131,7 +1135,7 @@ nav {
                             <span class="tech-tag">Swing</span>
                             <span class="tech-tag">OOP</span>
                         </div>
-                        <a href="https://github.com/lairubusiness/com.pizza.system.git" class="btn btn-primary" target="_blank"><span class="icon icon-github"></span> View on GitHub</a>
+                        <a href="https://github.com/lairubusiness/com.pizza.system.git" class="btn btn-primary"><span class="icon icon-github"></span> View on GitHub</a>
                     </div>
                 </div>
 
@@ -1146,7 +1150,7 @@ nav {
                             <span class="tech-tag">SQLite</span>
                             <span class="tech-tag">Multi-platform</span>
                         </div>
-                        <a href="https://github.com/lairubusiness/MySimpleNote-.git" class="btn btn-primary" target="_blank"><span class="icon icon-github"></span> View on GitHub</a>
+                        <a href="https://github.com/lairubusiness/MySimpleNote-.git" class="btn btn-primary"><span class="icon icon-github"></span> View on GitHub</a>
                     </div>
                 </div>
 
