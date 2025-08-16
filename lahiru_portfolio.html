@@ -693,6 +693,66 @@
             right: auto;
         }
 
+        /* Education & Certification Tags */
+        .education-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .education-tag {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-blue);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .education-tag i {
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .education-tag {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
+                border-radius: 20px;
+            }
+
+            .education-tags {
+                gap: 0.6rem;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .education-tag {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+                border-radius: 18px;
+            }
+
+            .education-tags {
+                gap: 0.5rem;
+            }
+        }
+
+        /* Ensure tags are properly sized on very small devices */
+        @media (max-width: 360px) {
+            .education-tag {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.75rem;
+            }
+        }
+
         /* Contact Section */
         .contact-info {
             display: grid;
@@ -1183,6 +1243,12 @@
                         <p><strong>Kingston University, UK</strong></p>
                         <p>2024-2025 | Esoft Metro Campus</p>
                         <span class="icon icon-trophy" style="color: var(--accent-blue); margin-top: 1rem; font-size: 1.5rem;"></span>
+                        <div class="education-tags">
+                            <span class="education-tag">Software Engineering</span>
+                            <span class="education-tag">Kingston University</span>
+                            <span class="education-tag">UK</span>
+                            <span class="education-tag">FIRST CLASS</span>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1190,6 +1256,11 @@
                         <h3>Higher National Diploma in Software Engineering (Merit)</h3>
                         <p><strong>Esoft Metro Campus</strong></p>
                         <p>2023-2024 | Pearson Qualification</p>
+                        <div class="education-tags">
+                            <span class="education-tag">Software Engineering</span>
+                            <span class="education-tag">Esoft Metro Campus</span>
+                            <span class="education-tag">Merit</span>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1197,6 +1268,11 @@
                         <h3>Diploma in ICT (Merit)</h3>
                         <p><strong>Esoft Metro Campus</strong></p>
                         <p>2022-2023 | Pearson DITEC</p>
+                        <div class="education-tags">
+                            <span class="education-tag">ICT</span>
+                            <span class="education-tag">Esoft Metro Campus</span>
+                            <span class="education-tag">Merit</span>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1204,6 +1280,11 @@
                         <h3>Diploma in English (Merit)</h3>
                         <p><strong>Esoft Metro Campus</strong></p>
                         <p>2022 | Pearson DIE</p>
+                        <div class="education-tags">
+                            <span class="education-tag">English</span>
+                            <span class="education-tag">Esoft Metro Campus</span>
+                            <span class="education-tag">Merit</span>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1211,6 +1292,11 @@
                         <h3>British Council English Courses</h3>
                         <p><strong>British Council Sri Lanka</strong></p>
                         <p>2018-2022 | Multiple levels completed with Grade B</p>
+                        <div class="education-tags">
+                            <span class="education-tag">English</span>
+                            <span class="education-tag">British Council Sri Lanka</span>
+                            <span class="education-tag">Grade B</span>
+                        </div>
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -1218,6 +1304,11 @@
                         <h3>Computer Applications Certificate</h3>
                         <p><strong>IHRA Colombo University</strong></p>
                         <p>2019 | Merit Pass - 120 contact hours</p>
+                        <div class="education-tags">
+                            <span class="education-tag">Computer Applications</span>
+                            <span class="education-tag">IHRA Colombo University</span>
+                            <span class="education-tag">Merit Pass</span>
+                        </div>
                     </div>
                 </div>
             </div>
